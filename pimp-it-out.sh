@@ -29,6 +29,7 @@ sudo apt-get install aptitude byobu git htop ranger vim-gtk wget zsh
 ## .vimrc (in Dotfiles section below)
 
 # oh-my-zsh
+    cd ~
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     echo "You may have to switch to zsh or something (chsh -s /bin/zsh).  See the post-pimp-out.txt file for details."
 
@@ -49,7 +50,11 @@ sudo apt-get install aptitude byobu git htop ranger vim-gtk wget zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/master/loco_install.sh)"
 
 # Printer drivers
-     
+    cd ~/Downloads
+    curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/master/linux-brprinter-installer-2.1.1-1
+    sudo su
+    bash linux-brprinter-installer MFC-J625DW
+
 
 # Other packages (some of these are quite large)
 
