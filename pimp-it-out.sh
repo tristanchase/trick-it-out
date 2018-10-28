@@ -49,11 +49,12 @@ sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget zsh
 ## loco
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/master/loco_install.sh)"
 
-# Printer drivers
-    cd ~/Downloads
-    curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/master/linux-brprinter-installer-2.1.1-1
-    sudo su
-    bash linux-brprinter-installer MFC-J625DW
+# This is dangerous; it leaves the user logged in as root!
+## Printer drivers
+#    cd ~/Downloads
+#    curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/master/linux-brprinter-installer-2.1.1-1
+#    sudo su
+#    bash linux-brprinter-installer MFC-J625DW
 
 
 # Other packages (some of these are quite large)
