@@ -8,7 +8,7 @@
 # Description: Customizes your fresh install with your preferred dotfiles and plugins.
 
 # Install basic packages
-sudo apt-get install aptitude byobu git htop ranger vim-gtk wget zsh
+sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget zsh
 
 # Vim Plugins
 ## pathogen
