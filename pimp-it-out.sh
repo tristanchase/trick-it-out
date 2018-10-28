@@ -58,4 +58,4 @@ sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget zsh
 
 # Other packages (some of these are quite large)
 
-
+exit 0
