@@ -17,11 +17,11 @@ sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget zsh
 
 ## vim-neatstatus
     cd ~/.vim/bundle
-    git clone git://github.com/maciakl/vim-neatstatus.git
+    git clone https://github.com/maciakl/vim-neatstatus.git
 
 ## vim-solarized
     cd ~/.vim/bundle
-    git clone git://github.com/altercation/vim-colors-solarized.git
+    git clone https://github.com/altercation/vim-colors-solarized.git
 
 ## Create tmp for swapfiles
     mkdir -p ~/.vim/tmp
@@ -35,7 +35,7 @@ sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget zsh
 
 # Dotfiles
     cd ~
-    git clone git://github.com/tristanchase/dotfiles.git
+    git clone https://github.com/tristanchase/dotfiles.git
     sh -c ~/dotfiles/makesymlinks.sh
 
 # Dropbox
