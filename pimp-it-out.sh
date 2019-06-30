@@ -5,7 +5,7 @@
 # Tristan M. Chase
 # Created: Fri Mar 16 01:14:07 EDT 2018
 #
-# Description: Customizes your fresh install with your preferred dotfiles and plugins.
+# Description: Customizes my fresh install with my preferred dotfiles and plugins.
 
 # Install basic packages
 sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget
@@ -45,7 +45,7 @@ echo "Would you like to install zsh (y/N)?"
 read answer
 case $answer in
 	y|Y)
-		apt-get install zsh
+		sudo apt-get install zsh
 		# oh-my-zsh
 		echo "Would you like to install oh-my-zsh (y/N)?"
 		read response
