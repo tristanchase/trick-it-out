@@ -8,7 +8,7 @@
 # Description: Customizes your fresh install with your preferred dotfiles and plugins.
 
 # Install basic packages
-sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget zsh
+sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget
 
 # Vim Plugins
 ## pathogen
@@ -28,26 +28,43 @@ sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget zsh
 
 ## .vimrc (in Dotfiles section below)
 
-# oh-my-zsh
-    cd ~
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    echo "You may have to switch to zsh or something (chsh -s /bin/zsh).  See the post-pimp-out.txt file for details."
-
-# Dotfiles
-    cd ~
-    git clone https://github.com/tristanchase/dotfiles.git
-    sh -c ~/dotfiles/makesymlinks.sh
-
-# Dropbox
-
-# Chrome
-
 # My devel scripts
 ## coapt
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/coapt/master/coapt_install.sh)"
 
 ## loco
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/master/loco_install.sh)"
+
+# Dotfiles
+    cd ~
+    git clone https://github.com/tristanchase/dotfiles.git
+    sh -c ~/dotfiles/makesymlinks.sh
+
+# zsh
+echo "Would you like to install zsh (y/N)?"
+read answer
+case $answer in
+	y|Y)
+		apt-get install zsh
+		# oh-my-zsh
+		echo "Would you like to install oh-my-zsh (y/N)?"
+		read response
+		case $response in
+			y|Y)
+				cd ~
+				sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+				#echo "You may have to switch to zsh or something (chsh -s /bin/zsh).  See the post-pimp-out.txt file for details."
+				;;
+			*)
+				;;
+		esac
+	*)
+		;;
+esac
+
+# Dropbox
+
+# Chrome
 
 # This is dangerous; it leaves the user logged in as root!
 ## Printer drivers
