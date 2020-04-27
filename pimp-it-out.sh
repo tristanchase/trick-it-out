@@ -17,12 +17,12 @@ sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget
 
 ## vim-neatstatus
     cd ~/.vim/bundle
-    git clone https://github.com/maciakl/vim-neatstatus.git
+    git clone https://github.com/tristanchase/vim-neatstatus.git
 
 ## vim-solarized
     cd ~/.vim/bundle
-    git clone https://github.com/altercation/vim-colors-solarized.git
-
+    git clone https://github.com/tristanchase/vim-colors-solarized.git
+    
 ## Create tmp for swapfiles
     mkdir -p ~/.vim/tmp
 
