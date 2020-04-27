@@ -22,7 +22,7 @@ sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget
 ## vim-solarized
     cd ~/.vim/bundle
     git clone https://github.com/tristanchase/vim-colors-solarized.git
-    
+
 ## Create tmp for swapfiles
     mkdir -p ~/.vim/tmp
 
