@@ -5,7 +5,10 @@
 # Tristan M. Chase
 # Created: Fri Mar 16 01:14:07 EDT 2018
 #
-# Description: Customizes my fresh install with my preferred dotfiles and plugins.
+# Description: Customizes a fresh install with my preferred dotfiles and plugins.
+
+# Preserve current directory
+_startdir="$(pwd)"
 
 # Install basic packages
 sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget
@@ -58,6 +61,7 @@ case $answer in
 			*)
 				;;
 		esac
+		;;
 	*)
 		;;
 esac
@@ -66,14 +70,16 @@ esac
 
 # Chrome
 
-# This is dangerous; it leaves the user logged in as root!
 ## Printer drivers
-#    cd ~/Downloads
-#    curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/master/linux-brprinter-installer-2.1.1-1
-#    sudo su
-#    bash linux-brprinter-installer MFC-J625DW
+_destdir=""${HOME}"/Downloads/brother"
+mkdir -p "${_destdir}" && cd "${_destdir}"
+curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/master/linux-brprinter-installer-2.1.1-1
+sudo bash linux-brprinter-installer MFC-J625DW
 
 
 # Other packages (some of these are quite large)
+
+# Return to starting directory
+cd "${_startdir}"
 
 exit 0
