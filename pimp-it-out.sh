@@ -58,6 +58,7 @@ case $answer in
 			*)
 				;;
 		esac
+                ;;
 	*)
 		;;
 esac
