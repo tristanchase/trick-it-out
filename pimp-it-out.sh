@@ -7,77 +7,142 @@
 #
 # Description: Customizes a fresh install with my preferred dotfiles and plugins.
 
+clear
+printf "%b\n" "$(basename "${0}")"
+printf "%b\n" "Answer the questions that follow to customize your fresh install."
+printf "%s " "Only the items answered with y or Y will be installed."
+read
+
 # Preserve current directory
 _startdir="$(pwd)"
 
 # Install basic packages
-sudo apt-get install aptitude byobu curl git htop ranger vim-gtk wget
+_basic_packages=(aptitude byobu curl git htop ranger vim-gtk wget)
+printf "%s " "Install basic packages ("${_basic_packages[@]}")?"
+read _basic_packages_yN
+function __basic_packages__ {
+	sudo apt-get install "${_basic_packages[@]}"
+}
 
 # Vim Plugins
-## pathogen
-    mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+printf "%s " "Install vim plugins (pathogen vim-neatstatus vim-solarized)?"
+read _vim_plugins_yN
+function __vim_plugins__ {
+	## pathogen
+	mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-## vim-neatstatus
-    cd ~/.vim/bundle
-    git clone https://github.com/tristanchase/vim-neatstatus.git
+	## vim-neatstatus
+	cd ~/.vim/bundle
+	git clone https://github.com/tristanchase/vim-neatstatus.git
 
-## vim-solarized
-    cd ~/.vim/bundle
-    git clone https://github.com/tristanchase/vim-colors-solarized.git
-
-## Create tmp for swapfiles
-    mkdir -p ~/.vim/tmp
-
-## .vimrc (in Dotfiles section below)
+	## vim-solarized
+	cd ~/.vim/bundle
+	git clone https://github.com/tristanchase/vim-colors-solarized.git
+}
 
 # My devel scripts
-## coapt
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/coapt/master/coapt_install.sh)"
+printf "%s " "Install coapt and loco?"
+read _my_scripts_yN
+function __my_scripts__ {
+	## coapt
+	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/coapt/master/coapt_install.sh)"
 
-## loco
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/master/loco_install.sh)"
+	## loco
+	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/master/loco_install.sh)"
+}
 
 # Dotfiles
-    cd ~
-    git clone https://github.com/tristanchase/dotfiles.git
-    sh -c ~/dotfiles/makesymlinks.sh
+printf "%s " "Install dotfiles?"
+read _dotfiles_yN
+function __dotfiles__ {
+	    cd "${HOME}"
+	    git clone https://github.com/tristanchase/dotfiles.git
+	    sh -c "${HOME}"/dotfiles/makesymlinks.sh
+	    mkdir -p ~/.vim/tmp
+}
 
 # zsh
-echo "Would you like to install zsh (y/N)?"
-read answer
-case $answer in
-	y|Y)
-		sudo apt-get install zsh
-		# oh-my-zsh
-		echo "Would you like to install oh-my-zsh (y/N)?"
-		read response
-		case $response in
-			y|Y)
-				cd ~
-				sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-				#echo "You may have to switch to zsh or something (chsh -s /bin/zsh).  See the post-pimp-out.txt file for details."
-				;;
-			*)
-				;;
-		esac
-		;;
-	*)
-		;;
-esac
+printf "%s " "Install zsh?"
+read _zsh_yN
+function __zsh__ {
+	sudo apt-get install zsh
+	chsh -s /bin/zsh
+}
 
-# Dropbox
-
-# Chrome
+# oh-my-zsh (depends on zsh)
+if [[ "${_zsh_yN}" =~ (y|Y) ]]; then
+	printf "%s " "Install oh-my-zsh?"
+	read _oh_my_zsh_yN
+else
+	_oh_my_zsh_yN="n"
+fi
+function __oh_my_zsh__ {
+	cd "${HOME}"
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+}
 
 ## Printer drivers
-_destdir=""${HOME}"/Downloads/brother"
-mkdir -p "${_destdir}" && cd "${_destdir}"
-curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/master/linux-brprinter-installer-2.1.1-1
-sudo bash linux-brprinter-installer MFC-J625DW
+printf "%s " "Install printer drivers?"
+read _printer_drivers_yN
+function __printer_drivers__ {
+	_destdir=""${HOME}"/Downloads/brother"
+	mkdir -p "${_destdir}" && cd "${_destdir}"
+	curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/master/linux-brprinter-installer-2.1.1-1
+	sudo bash linux-brprinter-installer MFC-J625DW
+}
 
+# Chrome
+printf "%s " "Install Chrome?"
+read _google_chrome_yN
+function __google_chrome__ {
+	set -o errexit
+	_pimpdir=""${HOME}"/Downloads/pimp-dir"
+	mkdir -p "${_pimpdir}"
+	_destdir="${HOME}"/Downloads/google-chrome
+	mkdir -p "${_destdir}" && cd "${_destdir}"
 
-# Other packages (some of these are quite large)
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo apt install ./google-chrome-stable_current_amd64.deb
+
+	printf "%s " "Would you like google-chrome-stable to update in the background?"
+	read _yN
+	if [[ "${_yN}" =~ (y|Y) ]]; then
+		cd "${_pimpdir}"
+		wget https://raw.githubusercontent.com/tristanchase/pimp-it-out/master/install-helpers/zzz.sh
+		wget https://raw.githubusercontent.com/tristanchase/pimp-it-out/master/install-helpers/zzz-google-chrome-upgrade
+		mv zzz.sh zzz
+		chmod 755 *
+		rsync -avu zzz "${HOME}"/bin
+		sudo rsync -avu zzz-google-chrome-upgrade /etc/cron.daily
+	fi
+
+	rm -r "${_pimpdir}"
+}
+
+# Dropbox
+printf "%s " "Install Dropbox?"
+read _dropbox_yN
+function __dropbox__ {
+	printf "%b\n" "Dropbox install function under construction. Try again later. :P"
+}
+
+function __install__ {
+	[[ "${_basic_packages_yN}" =~ (y|Y) ]] && __basic_packages___ || printf "%b\n" "Install basic packages: skipped"
+	[[ "${_vim_plugins_yN}" =~ (y|Y) ]] && __vim_plugins__ || printf "%b\n" "Install vim plugins: skipped"
+	[[ "${_my_scripts_yN}" =~ (y|Y) ]] && __my_scripts__ || printf "%b\n" "Install my scripts: skipped"
+	[[ "${_dotfiles_yN}" =~ (y|Y) ]] && __dotfiles__ || printf "%b\n" "Install dotfiles: skipped"
+	[[ "${_zsh_yN}" =~ (y|Y) ]] && __zsh__ || printf "%b\n" "Install zsh: skipped"
+	[[ "${_oh_my_zsh_yN}" =~ (y|Y) ]] && __oh_my_zsh__ || printf "%b\n" "Install oh my zsh: skipped"
+	[[ "${_printer_drivers_yN}" =~ (y|Y) ]] && __printer_drivers__ || printf "%b\n" "Install printer drivers: skipped"
+	[[ "${_google_chrome_yN}" =~ (y|Y) ]] && __google_chrome__ || printf "%b\n" "Install Chrome: skipped"
+	[[ "${_dropbox_yN}" =~ (y|Y) ]] && __dropbox__ || printf "%b\n" "Install Dropbox: skipped"
+}
+
+printf "%b\n"
+printf "%s " "Ready to install? (y or Y to install; any other key to quit)"
+read _install_yN
+[[ "${_install_yN}" =~ (y|Y) ]] && __install__ || printf "%b\n" "Quitting..."
 
 # Return to starting directory
 cd "${_startdir}"
