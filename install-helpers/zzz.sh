@@ -12,4 +12,5 @@ echo "--------------------" >> $file
 
 tail $file
 
-grep -C 2 google-chrome-stable /var/log/apt/history.log
+#grep -C 2 google-chrome-stable /var/log/apt/history.log
+grep 'status installed google-chrome-stable' /var/log/dpkg.log

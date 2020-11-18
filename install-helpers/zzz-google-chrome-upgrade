@@ -6,4 +6,4 @@
 # zzz-google-chrome-upgrade so it goes last and because it's slow...
 
 # This will mark it for upgrade, pull the update, and upgrade the package.
-apt install google-chrome-stable
+apt --ignore-hold install google-chrome-stable
