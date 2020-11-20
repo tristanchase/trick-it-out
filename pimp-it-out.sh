@@ -49,7 +49,7 @@ function __my_scripts__ {
 	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/coapt/master/install.sh)"
 
 	## loco
-	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/master/loco_install.sh)"
+	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/master/install.sh)"
 }
 
 # Dotfiles
