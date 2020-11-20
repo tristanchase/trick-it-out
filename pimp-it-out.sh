@@ -46,7 +46,7 @@ printf "%s " "Install coapt and loco?"
 read _my_scripts_yN
 function __my_scripts__ {
 	## coapt
-	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/coapt/master/coapt_install.sh)"
+	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/coapt/master/install.sh)"
 
 	## loco
 	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/master/loco_install.sh)"
