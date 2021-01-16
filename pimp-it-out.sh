@@ -116,7 +116,8 @@ function __google_chrome__ {
 		rsync -avu zzz "${HOME}"/bin
 		sudo rsync -avu zzz-google-chrome-upgrade /etc/cron.daily
 		_holddir=""${HOME}"/.local/share/coapt/hold"
-		mkdir -p "${_holddir}" && touch "${_holddir}"/google-chrome-stable
+		mkdir -p "${_holddir}" && printf "%b\n" "google-chrome-stable" >> "${_holddir}"/held-packages
+		#mkdir -p "${_holddir}" && touch "${_holddir}"/google-chrome-stable
 	fi
 
 	rm -r "${_pimpdir}"
