@@ -17,7 +17,7 @@ read
 _startdir="$(pwd)"
 
 # Install basic packages
-_basic_packages=(aptitude byobu curl git htop ranger vim-gtk wget)
+_basic_packages=(anacron aptitude byobu curl git htop ranger vim-gtk wget)
 printf "%s " "Install basic packages ("${_basic_packages[@]}")?"
 read _basic_packages_yN
 function __basic_packages__ {
