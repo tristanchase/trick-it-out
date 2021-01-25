@@ -56,9 +56,9 @@ function __my_scripts__ {
 printf "%s " "Install dotfiles?"
 read _dotfiles_yN
 function __dotfiles__ {
-	    cd "${HOME}"
+	    cd ${HOME}
 	    git clone https://github.com/tristanchase/dotfiles.git
-	    sh -c "${HOME}"/dotfiles/makesymlinks.sh
+	    sh -c ${HOME}/dotfiles/makesymlinks.sh
 	    mkdir -p ~/.vim/tmp
 }
 
@@ -78,7 +78,7 @@ else
 	_oh_my_zsh_yN="n"
 fi
 function __oh_my_zsh__ {
-	cd "${HOME}"
+	cd ${HOME}
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
@@ -86,7 +86,7 @@ function __oh_my_zsh__ {
 printf "%s " "Install printer drivers?"
 read _printer_drivers_yN
 function __printer_drivers__ {
-	_destdir=""${HOME}"/Downloads/brother"
+	_destdir="${HOME}/Downloads/brother"
 	mkdir -p "${_destdir}" && cd "${_destdir}"
 	curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/master/linux-brprinter-installer-2.1.1-1
 	sudo bash linux-brprinter-installer MFC-J625DW
@@ -97,9 +97,9 @@ printf "%s " "Install Chrome?"
 read _google_chrome_yN
 function __google_chrome__ {
 	set -o errexit
-	_pimpdir=""${HOME}"/Downloads/pimp-dir"
+	_pimpdir="${HOME}/Downloads/pimp-dir"
 	mkdir -p "${_pimpdir}"
-	_destdir="${HOME}"/Downloads/google-chrome
+	_destdir=${HOME}/Downloads/google-chrome
 	mkdir -p "${_destdir}" && cd "${_destdir}"
 
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -113,9 +113,9 @@ function __google_chrome__ {
 		wget https://raw.githubusercontent.com/tristanchase/pimp-it-out/master/install-helpers/zzz-google-chrome-upgrade
 		mv zzz.sh zzz
 		chmod 755 *
-		rsync -avu zzz "${HOME}"/bin
+		rsync -avu zzz ${HOME}/bin
 		sudo rsync -avu zzz-google-chrome-upgrade /etc/cron.daily
-		_holddir=""${HOME}"/.local/share/coapt/hold"
+		_holddir="${HOME}/.local/share/coapt/hold"
 		mkdir -p "${_holddir}" && printf "%b\n" "google-chrome-stable" >> "${_holddir}"/held-packages
 		#mkdir -p "${_holddir}" && touch "${_holddir}"/google-chrome-stable
 	fi
