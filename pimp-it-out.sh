@@ -42,14 +42,13 @@ function __vim_plugins__ {
 }
 
 # My devel scripts
+_devel_scripts=(coapt loco gen-keys)
 printf "%s " "Install coapt and loco?"
 read _my_scripts_yN
 function __my_scripts__ {
-	## coapt
-	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/coapt/main/install.sh)"
-
-	## loco
-	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/main/install.sh)"
+	for _script in "${_devel_scripts[@]}"; do
+	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/"${_script}"/main/install.sh)"
+	done
 }
 
 # Dotfiles
