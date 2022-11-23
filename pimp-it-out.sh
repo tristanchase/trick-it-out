@@ -86,6 +86,7 @@ function __oh_my_zsh__ {
 printf "%s " "Install printer drivers?"
 read _printer_drivers_yN
 function __printer_drivers__ {
+	sudo apt-get install cups
 	_destdir="${HOME}/Downloads/brother"
 	mkdir -p "${_destdir}" && cd "${_destdir}"
 	curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/main/linux-brprinter-installer-2.1.1-1
