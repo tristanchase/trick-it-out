@@ -132,7 +132,7 @@ function __dropbox__ {
 }
 
 function __install__ {
-	[[ "${_basic_packages_yN}" =~ (y|Y) ]] && __basic_packages___ || printf "%b\n" "Install basic packages: skipped"
+	[[ "${_basic_packages_yN}" =~ (y|Y) ]] && __basic_packages__ || printf "%b\n" "Install basic packages: skipped"
 	[[ "${_vim_plugins_yN}" =~ (y|Y) ]] && __vim_plugins__ || printf "%b\n" "Install vim plugins: skipped"
 	[[ "${_my_scripts_yN}" =~ (y|Y) ]] && __my_scripts__ || printf "%b\n" "Install my scripts: skipped"
 	[[ "${_dotfiles_yN}" =~ (y|Y) ]] && __dotfiles__ || printf "%b\n" "Install dotfiles: skipped"
