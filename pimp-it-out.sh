@@ -46,10 +46,10 @@ printf "%s " "Install coapt and loco?"
 read _my_scripts_yN
 function __my_scripts__ {
 	## coapt
-	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/coapt/master/install.sh)"
+	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/coapt/main/install.sh)"
 
 	## loco
-	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/master/install.sh)"
+	    sh -c "$(curl -fsSL https://raw.githubusercontent.com/tristanchase/loco/main/install.sh)"
 }
 
 # Dotfiles
@@ -88,7 +88,7 @@ read _printer_drivers_yN
 function __printer_drivers__ {
 	_destdir="${HOME}/Downloads/brother"
 	mkdir -p "${_destdir}" && cd "${_destdir}"
-	curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/master/linux-brprinter-installer-2.1.1-1
+	curl -LSso linux-brprinter-installer https://raw.githubusercontent.com/tristanchase/printer-install/main/linux-brprinter-installer-2.1.1-1
 	sudo bash linux-brprinter-installer MFC-J625DW
 }
 
@@ -109,8 +109,8 @@ function __google_chrome__ {
 	read _yN
 	if [[ "${_yN}" =~ (y|Y) ]]; then
 		cd "${_pimpdir}"
-		wget https://raw.githubusercontent.com/tristanchase/pimp-it-out/master/install-helpers/zzz.sh
-		wget https://raw.githubusercontent.com/tristanchase/pimp-it-out/master/install-helpers/zzz-google-chrome-upgrade
+		wget https://raw.githubusercontent.com/tristanchase/pimp-it-out/main/install-helpers/zzz.sh
+		wget https://raw.githubusercontent.com/tristanchase/pimp-it-out/main/install-helpers/zzz-google-chrome-upgrade
 		mv zzz.sh zzz
 		chmod 755 *
 		rsync -avu zzz ${HOME}/bin
