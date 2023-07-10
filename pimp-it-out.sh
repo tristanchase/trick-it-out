@@ -17,7 +17,7 @@ read
 _startdir="$(pwd)"
 
 # Install basic packages
-_basic_packages=(anacron aptitude byobu curl git htop ranger vim-gtk wget)
+_basic_packages=(anacron aptitude byobu curl git htop openssh ranger vim-gtk wget) # Change2: remove anacron from list
 printf "%s " "Install basic packages ("${_basic_packages[@]}")?"
 read _basic_packages_yN
 function __basic_packages__ {
@@ -43,7 +43,7 @@ function __vim_plugins__ {
 
 # My devel scripts
 _devel_scripts=(coapt loco gen-keys)
-printf "%s " "Install coapt and loco?"
+printf "%s " "Install scripts ("${_devel_scripts[@]}")?"
 read _my_scripts_yN
 function __my_scripts__ {
 	for _script in "${_devel_scripts[@]}"; do
