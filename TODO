@@ -1,18 +1,40 @@
 * edit trick-it-out.sh
 	+ Change1
-	+ make sure all devel scripts in list have install.sh
+	* make sure all devel scripts in list have install.sh
+		* create complain function if no install.sh
 	* after Ref2: remove Change2 text
+	* offer list of repos to clone
+	* wrap script in boilerplate
+	* create config file
+	* create status file (to return to for updating)
 * edit (loco coapt gen-keys).sh
 	* create README.adoc
+	* create TUTORIAL.adoc
 	* wrap script in boilerplate
 	* create --readme option
+	* create --tutorial option
 * edit (loco coapt gen-keys)/install.sh
 	* change file structure
-		* check for ~/.config
-		* check for ~/.local/share
+		@ check for ~/.config
+		@ check for ~/.local/share
 		* create ~/.local/share/$_script/ # Ref1
 		* copy README.adoc and help files to Ref1
+	* wrap script in boilerplate
 * copy trick-it-out.sh to termux-setup.sh
 * edit termux-setup.sh
 	* Change2 # Ref2
 
+Files:
+~/devel/trick-it-out/
+~/devel/trick-it-out/trick-it-out.sh
+~/devel/loco/
+~/devel/loco/loco.sh
+~/devel/loco/install.sh
+~/devel/coapt/
+~/devel/coapt/coapt.sh
+~/devel/coapt/install.sh
+~/devel/gen-keys/
+~/devel/gen-keys/gen-keys.sh
+~/devel/gen-keys/install.sh
+~/.config/
+~/.local/share/
