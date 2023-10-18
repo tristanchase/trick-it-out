@@ -1,4 +1,4 @@
-* edit pimp-it-out.sh
+* edit trick-it-out.sh
 	+ Change1
 	+ make sure all devel scripts in list have install.sh
 	* after Ref2: remove Change2 text
@@ -12,7 +12,7 @@
 		* check for ~/.local/share
 		* create ~/.local/share/$_script/ # Ref1
 		* copy README.adoc and help files to Ref1
-* copy pimp-it-out.sh to termux-setup.sh
+* copy trick-it-out.sh to termux-setup.sh
 * edit termux-setup.sh
 	* Change2 # Ref2
 
